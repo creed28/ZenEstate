@@ -1,6 +1,6 @@
 import React from 'react'
 
-const TopAgents = () => {
+const OurAgents = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const TopAgents = () => {
   )
 }
 
-export default TopAgents
+export default OurAgents

@@ -5,7 +5,7 @@ import PropertyDetails from '../pages/PropertyDetails';
 import About from '../pages/About';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
-import TopAgents from '../pages/TopAgents';
+import OurAgents from '../pages/OurAgents';
 import Profile from '../pages/Profile';
 import Contact from '../pages/Contact';
 import { Layout } from '../layouts/Layout';
@@ -19,7 +19,7 @@ export const router = createBrowserRouter(
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/property/:id" element={<PropertyDetails />} />
-        <Route path="/top-agents" element={<TopAgents />} />
+        <Route path="/our-agents" element={<OurAgents />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/contact' element={<Contact />} />
       </Route>
