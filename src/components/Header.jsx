@@ -16,7 +16,6 @@ const Header = () => {
       <nav>
         <ul className='flex items-center gap-8 font-medium text-[15px]'>
           <li><Link to={'/about'}>About us</Link></li>
-          <li><Link to={'/properties'}>Properties</Link></li>
           <li><Link to={'/top-agents'}>Top Agents</Link></li>
           <li className='bg-[#525252] py-2 px-3 rounded-3xl text-[#f8f7f7]'>
             <Link to={'/register'}>Get Started</Link>
