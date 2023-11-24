@@ -12,10 +12,10 @@ import { Layout } from '../layouts/Layout';
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-      <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route element={<Layout />}>
+        <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/properties" element={<Properties />} />
         <Route path="/property/:id" element={<PropertyDetails />} />
