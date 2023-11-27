@@ -7,7 +7,8 @@ export default {
     },
     colors: {
       'primary-grey': '#eaeaea',
-    }
+      'text-color': '#2c2d32'
+    },
   },
   plugins: [],
 }
