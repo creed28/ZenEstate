@@ -5,7 +5,7 @@ import { TiArrowSortedDown } from "react-icons/ti";
 
 const Header = () => {
   return (
-    <header className='bg-primary-grey flex items-center justify-between py-3 px-20'>
+    <header className='bg-primary-grey flex items-center justify-between py-3 px-20 border-b border-[#dadada]'>
       <Link to={'/'}>
         <div className="flex justify-between items-center gap-2" title='ZenEstate | Home'>
           <img src={Logo} alt="logo" className='w-[30px] h-[30px]' />
