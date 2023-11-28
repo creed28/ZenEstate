@@ -4,7 +4,7 @@
 
 @layer base {
     body {
-      @apply text-text-color;
+      @apply text-text-color box-border;
     }
 
     .dropdown{
@@ -24,6 +24,6 @@
     }
 
     .dropdown-menu{
-      @apply px-4 py-6 text-[15px] space-y-6 drop-shadow-md bg-[white] absolute w-full z-10 list-none rounded-b-lg max-h-[150px] overflow-y-auto cursor-default
+      @apply px-4 py-6 text-[15px] space-y-6 drop-shadow-md bg-[white] absolute w-full z-10 list-none rounded-b-lg max-h-[165px] overflow-y-auto cursor-default
     }
 } 
