@@ -48,9 +48,25 @@ const PriceRangeDropdown = () => {
     
     setIsOpen(false);
   };
+
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener('click', handleClickOutside);
+
+    return () => {
+      window.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
   
   return (
-    <Menu as='div' className='dropdown relative'>
+    <Menu as='div' className='dropdown relative' ref={dropdownRef}>
       <Menu.Button onClick={() => setIsOpen(!isOpen)} className='dropdown-btn w-full text-left'>
         <RiWallet3Line className='dropdown-icon-primary'   />
         <div>
