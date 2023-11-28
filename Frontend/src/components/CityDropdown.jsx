@@ -28,7 +28,7 @@ const CityDropdown = () => {
         }
       </Menu.Button> 
 
-      <Menu.Items className='dropdown-menu'>
+      <Menu.Items className='dropdown-menu' as='ul'>
         {cities.map((city, index) => {
           return(
             <Menu.Item 
