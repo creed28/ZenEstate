@@ -9,8 +9,8 @@ const Home = () => {
       <div className='lg:ml-8 xl:ml-[135px] flex flex-col items-center 
         lg:items-start text-center lg:text-left justify-center flex-1 px-4 lg:px-0'>
         <h1 className='uppercase text-4xl lg:text-[58px] font-semibold leading-none mb-6 '>
-          Meet <span className='text-[#616161]'>Your</span> New 
-          Home<span className='text-[#616161]'>.</span>
+          Meet <span className='text-[#616161]'>Your </span> 
+          New Home<span className='text-[#616161]'>.</span>
         </h1>
         <p className='max-w-[480px] mb-8 pl-2'>Lorem ipsum dolor sit amet consectetur
          adipisicing elit. At placeat quasi quos dignissimos sequi tempore, impedit vitae
@@ -18,7 +18,7 @@ const Home = () => {
           tempore et similique?
         </p>
       </div>
-      <div className='hidden flex-1 lg:flex justify-end items-end mt-10'>
+      <div className='hidden flex-1 lg:flex justify-end items-end mt-10 mr-5'>
         <img src={Image} alt="Hero House Image" className='w-[650px]' />
       </div>
     </div>

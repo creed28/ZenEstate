@@ -8,14 +8,14 @@ import Register from '../pages/Register';
 import OurAgents from '../pages/OurAgents';
 import Profile from '../pages/Profile';
 import Contact from '../pages/Contact';
-import { Layout } from '../layouts/Layout';
+import { MainLayout } from '../layouts/MainLayout';
 
-export const router = createBrowserRouter(
+export const MainRouter = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route element={<Layout />}>
+      <Route element={<MainLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/property/:id" element={<PropertyDetails />} />
