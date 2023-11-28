@@ -22,4 +22,8 @@
     .dropdown-icon-secondary{
       @apply text-2xl ml-auto;
     }
+
+    .dropdown-menu{
+      @apply px-6 py-8 text-[15px] space-y-6 drop-shadow-md bg-[white] absolute w-full z-10 list-none rounded-b-lg
+    }
 }
