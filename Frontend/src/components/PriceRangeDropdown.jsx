@@ -104,7 +104,7 @@ const PriceRangeDropdown = () => {
                   placeholder-[#484848] focus:outline-none transition focus:placeholder-[#989898]'
               />
               <button type='submit' className='bg-[#525252] text-[white] w-20 h-20 rounded-md
-              hover:bg-[#616161] focus:outline-none focus:ring transition'>
+              hover:bg-[#616161] focus:outline-none transition'>
               Set
               </button>
           </form>

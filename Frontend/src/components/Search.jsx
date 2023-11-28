@@ -8,8 +8,8 @@ import { HouseContext } from '../contexts/HouseContext';
 const Search = () => {
   return (
     <div className='px-[30px] py-6 max-w-[1170px] mx-auto flex flex-col lg:flex-row justify-between 
-      gap-4 lg:gap-x-3 relative lg:-top-4 lg:shadow-1 bg-primary-grey 
-      lg:bg-[transparent] lg:backdrop-blur rounded-lg'>
+      gap-4 lg:gap-x-3 relative lg:top-2 lg:shadow-1 bg-primary-grey 
+      lg:bg-[#d8d8d8] lg:backdrop-blur rounded-lg'>
       <CityDropdown />
       <PropertyDropdown />
       <PriceRangeDropdown />
