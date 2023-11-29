@@ -7,8 +7,8 @@ const Property = ({house}) => {
   } = house;
   
   return (
-    <div className='bg-[#e1e1e1] shadow-1 mt-11 p-5 rounded-lg rounded-tl-[90px]
-       w-full max-w-[352px] mx-auto cursor-pointer hover:drop-shadow-2xl transition'>
+    <div className='bg-primary-grey shadow-1 mt-11 p-5 rounded-lg rounded-tl-[90px]
+       w-full max-w-[352px] max-h-[560px] mx-auto cursor-pointer hover:drop-shadow-2xl transition'>
       <img className='mb-8' src={image} alt="" />
       <div className='mb-4 flex gap-x-2 text-sm'>
         <div className='rounded-full bg-[#616161] text-[white] px-3'>     
@@ -47,7 +47,7 @@ const Property = ({house}) => {
           </div>
         </div>
       </div>
-      <div className='text-lg font-semibold mb-4'>{price}BGN</div>
+      <div className='text-lg font-semibold mb-4'>{price} BGN</div>
     </div>
   )
 }
