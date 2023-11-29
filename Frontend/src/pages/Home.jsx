@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from '../assets/img/main-image.jpg';
 import Search from '../components/Search';
+import PropertyList from '../components/PropertyList';
 import {Link} from 'react-router-dom';
 
 const Home = () => {
@@ -27,6 +28,7 @@ const Home = () => {
       </div>
     </div>
     <Search />
+    <PropertyList />
    </section>
   )
 }
