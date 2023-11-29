@@ -73,6 +73,7 @@ const PriceRangeDropdown = () => {
 
     return () => {
       window.removeEventListener('click', handleClickOutside);
+      setPrice('Price range (any)');
     };
   }, []);
   
