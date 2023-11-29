@@ -2,7 +2,9 @@ import React from 'react';
 import {BiBed, BiBath, BiArea} from 'react-icons/bi';
 
 const Property = ({house}) => {
-  const {image, type, city, address, bedrooms, bathrooms, surface, price} = house;
+  const {
+    image, type, city, address, bedrooms, bathrooms, surface, price
+  } = house;
   
   return (
     <div className='bg-[#e1e1e1] shadow-1 mt-11 p-5 rounded-lg rounded-tl-[90px]

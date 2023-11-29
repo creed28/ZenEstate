@@ -6,11 +6,11 @@ import { Menu } from '@headlessui/react';
 import {HouseContext} from '../contexts/HouseContext';
 
 const PriceRangeDropdown = () => {
-  const {price, setPrice} = useContext(HouseContext);
+  const {
+    price, setPrice, minPrice, maxPrice, setMinPrice, setMaxPrice
+  } = useContext(HouseContext);
 
   const [isOpen, setIsOpen] = useState(false);
-  const [minPrice, setMinPrice] = useState('');
-  const [maxPrice, setMaxPrice] = useState('');
   const [error, setError] = useState(false);
 
   const handleMinPriceChange = (e) => {

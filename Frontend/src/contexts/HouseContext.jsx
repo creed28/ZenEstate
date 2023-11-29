@@ -12,6 +12,8 @@ const HouseContextProvider = ({children}) => {
   const [properties, setProperties] = useState([]);
   const [price, setPrice] = useState('Price range (any)');
   const [loading, setLoading] = useState(false);
+  const [minPrice, setMinPrice] = useState('');
+  const [maxPrice, setMaxPrice] = useState('');
 
   useEffect(() => {
     const allCities = houses.map((house) => {
@@ -34,7 +36,7 @@ const HouseContextProvider = ({children}) => {
   }, []);
 
   const handleClick = () => {
-    console.log(city, property, price);
+    console.log(city, property, minPrice, maxPrice);
   }
 
   return (
@@ -51,7 +53,11 @@ const HouseContextProvider = ({children}) => {
       setPrice,
       houses,
       loading,
-      handleClick
+      handleClick,
+      minPrice,
+      setMinPrice,
+      maxPrice,
+      setMaxPrice
     }}>
       {children}
     </HouseContext.Provider>
