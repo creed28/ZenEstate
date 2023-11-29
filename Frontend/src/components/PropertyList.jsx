@@ -8,11 +8,11 @@ const PropertyList = () => {
   const {houses, loading} = useContext(HouseContext);
 
   if(loading){
-    return <ImSpinner2 className='mx-auto animate-spin text-text-color text-4xl mt-[200px]' />
+    return <ImSpinner2 className='mx-auto animate-spin text-text-color text-4xl mt-[100px] bg-[white]' />
   }
 
   if(houses.length < 1){
-    return <div>No Properties with that criteria were found.. :(</div>
+    return <div className='text-center text-3xl text-[#979797] mt-1 py-10 bg-[white]'>No properties with that criteria were found... :(</div>
   }
 
   return (
