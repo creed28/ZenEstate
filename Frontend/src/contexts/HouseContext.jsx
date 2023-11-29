@@ -34,7 +34,7 @@ const HouseContextProvider = ({children}) => {
   }, []);
 
   const handleClick = () => {
-    console.log('click');
+    console.log(city, property, price);
   }
 
   return (

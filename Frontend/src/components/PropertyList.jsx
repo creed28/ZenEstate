@@ -7,7 +7,6 @@ import {ImSpinner2} from 'react-icons/im';
 const PropertyList = () => {
   const {houses, loading} = useContext(HouseContext);
 
-  console.log(houses);
   return (
     <section className='bg-[white]'>
       <div className="container mx-auto">

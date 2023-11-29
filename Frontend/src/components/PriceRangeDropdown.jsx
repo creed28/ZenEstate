@@ -44,7 +44,7 @@ const PriceRangeDropdown = () => {
       return;
     }
 
-    if(minPrice >= maxPrice){
+    if(parseInt(minPrice) >= parseInt(maxPrice)){
       setPrice("Max price can't be less or equal to Min price!");
       setError(true);
       return;
