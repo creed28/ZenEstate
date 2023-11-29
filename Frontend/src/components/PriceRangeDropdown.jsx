@@ -9,9 +9,9 @@ const PriceRangeDropdown = () => {
   const {price, setPrice} = useContext(HouseContext);
 
   const [isOpen, setIsOpen] = useState(false);
-
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
+  const [error, setError] = useState(false);
 
   const handleMinPriceChange = (e) => {
     setMinPrice(e.target.value);
@@ -23,29 +23,40 @@ const PriceRangeDropdown = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
-    if (minPrice === '' && maxPrice === '') {
-      setPrice('Price range (any)');
-      setIsOpen(false);
-      return;
-    }
-  
-    if (minPrice >= maxPrice) {
-      setPrice('Price range (any)');
-      setMinPrice('');
+
+    if((minPrice != '' && minPrice > 0) && (maxPrice == 0 || maxPrice === '')){
       setMaxPrice('');
-      setIsOpen(false);
+      setPrice("Max price can't be less than Min price!");
+      setError(true);
       return;
     }
-  
-    if (minPrice === '') {
-      setMinPrice(0, () => {
-        setPrice(`${minPrice}BGN - ${maxPrice}BGN`);
-      });
-    } else{
-      setPrice(`${minPrice}BGN - ${maxPrice}BGN`);
+
+    if((minPrice == 0 || minPrice === '') && (maxPrice == 0 || maxPrice === '')){
+      setPrice('Price range (any)');
+      setIsOpen(false);
+      setError(false);
+      return;
     }
-    
+
+    if(minPrice < 0 || maxPrice < 0){
+      setPrice("Price can't be less than 0!");
+      setError(true);
+      return;
+    }
+
+    if(minPrice >= maxPrice){
+      setPrice("Max price can't be less or equal to Min price!");
+      setError(true);
+      return;
+    }
+
+    if(minPrice === ''){
+      setPrice(`0BGN - ${maxPrice}BGN`);
+      return;
+    }
+
+    setPrice(`${minPrice}BGN - ${maxPrice}BGN`);
+    setError(false);
     setIsOpen(false);
   };
 
@@ -70,7 +81,12 @@ const PriceRangeDropdown = () => {
       <Menu.Button onClick={() => setIsOpen(!isOpen)} className='dropdown-btn w-full text-left'>
         <RiWallet3Line className='dropdown-icon-primary'   />
         <div>
-          <div className='text-[15px] font-medium leading-tight'>{price}</div>
+        <div
+          className={`text-[15px] font-medium leading-tight ${
+          error ? 'text-[red]' : ''
+        }`}>
+          {price}
+        </div>
           <div className='text-[13px]'>Choose prince range</div>
         </div>
         {
