@@ -9,13 +9,13 @@ const PropertyList = () => {
 
   console.log(houses);
   return (
-    <section className='mb-20'>
+    <section className='mt-1 bg-[white]'>
       <div className="container mx-auto">
         <div>
           {houses.map((house, index) => {
             return (
               <Link to={`/property/${house.id}`} key={index}>
-                <Property property={house} />
+                <Property house={house} />
               </Link>
             )
           })}
