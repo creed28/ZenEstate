@@ -52,6 +52,8 @@ const PriceRangeDropdown = () => {
 
     if(minPrice === ''){
       setPrice(`0BGN - ${maxPrice}BGN`);
+      setIsOpen(false);
+      setError(false);
       return;
     }
 
