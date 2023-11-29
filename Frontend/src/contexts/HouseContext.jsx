@@ -48,45 +48,12 @@ const HouseContextProvider = ({children}) => {
 
     const newHouses = housesData.filter((house) => {
       const housePrice = parseInt(house.price);
-      if(house.city === city && house.type === property && housePrice >= newMinPrice && housePrice <= newMaxPrice){
-        return house;
-      }
-
-      if(isDefault(city) && isDefault(property) && isDefault(price)){
-        return house;
-      }
-
-      if(!isDefault(city) && isDefault(property) && isDefault(price)){
-        return house.city === city;
-      }
-
-      if(isDefault(city) && !isDefault(property) && isDefault(price)){
-        return house.type === property;
-      }
-
-      if(isDefault(city) && isDefault(property) && !isDefault(price)){
-        if(housePrice >= newMinPrice && housePrice <= newMaxPrice){
-          return house;
-        }
-      }
-
-      if(!isDefault(city) && !isDefault(property) && isDefault(price)){
-        return house.city === city && house.type === property;
-      }
-
-      if(!isDefault(city) && isDefault(property) && !isDefault(price)){
-        if(housePrice >= newMinPrice && housePrice <= newMaxPrice){
-          return house.city === city;
-        }
-      }
-
-      if(isDefault(city) && !(property) && !isDefault(price)){
-        if(housePrice >= newMinPrice && housePrice <= newMaxPrice){
-          return house.type === property;
-        }
-      }
-
-    })
+      const cityCondition = isDefault(city) || house.city === city;
+      const propertyCondition = isDefault(property) || house.type === property;
+      const priceCondition = isDefault(price) || (housePrice >= newMinPrice && housePrice <= newMaxPrice);
+    
+      return cityCondition && propertyCondition && priceCondition;
+    });    
 
     setTimeout(() => {
       return newHouses.length < 1 ? setHouses([]) : setHouses(newHouses),
