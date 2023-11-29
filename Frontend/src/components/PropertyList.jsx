@@ -7,6 +7,14 @@ import {ImSpinner2} from 'react-icons/im';
 const PropertyList = () => {
   const {houses, loading} = useContext(HouseContext);
 
+  if(loading){
+    return <ImSpinner2 className='mx-auto animate-spin text-text-color text-4xl mt-[200px]' />
+  }
+
+  if(houses.length < 1){
+    return <div>No Properties with that criteria were found.. :(</div>
+  }
+
   return (
     <section className='bg-[white]'>
       <div className="container mx-auto">

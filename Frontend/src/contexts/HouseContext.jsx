@@ -46,8 +46,6 @@ const HouseContextProvider = ({children}) => {
 
     const newMaxPrice = isNaN(parseInt(maxPrice)) ? 0 : parseInt(maxPrice);
 
-    console.log(newMinPrice, newMaxPrice)
-
     const newHouses = housesData.filter((house) => {
       const housePrice = parseInt(house.price);
       if(house.city === city && house.type === property && housePrice >= newMinPrice && housePrice <= newMaxPrice){
@@ -90,6 +88,10 @@ const HouseContextProvider = ({children}) => {
 
     })
 
+    setTimeout(() => {
+      return newHouses.length < 1 ? setHouses([]) : setHouses(newHouses),
+      setLoading(false);
+    }, 1000)
   }
 
   return (
