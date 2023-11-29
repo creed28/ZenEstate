@@ -9,6 +9,12 @@ export default {
       'primary-grey': '#eaeaea',
       'text-color': '#2c2d32'
     },
+    container: {
+      padding: {
+        DEFAULT: '1rem',
+        lg: '2rem',
+      },
+    },
     boxShadow: {
       1: '0px 4px 30px rgba(0, 0, 0, 0.08)',
     },
