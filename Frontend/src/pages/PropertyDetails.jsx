@@ -78,12 +78,8 @@ const PropertyDetails = () => {
               <textarea className='border border-primary-grey focus:border-text-color outline-none 
               resize-none rounded w-full p-4 h-36 text-sm placeholder-[#7d7d7d]' placeholder='Message'
               defaultValue='Hello, I would like to...'></textarea>
-              <div className='flex gap-x-2'>
-                <button className='bg-text-color hover:bg-[#616161] text-[white] rounded p-4 
-                text-sm w-full transition'>Send Message</button>
-                <button className='border border-text-color hover:border-[#bababa] rounded p-4 
-                text-sm w-full transition'>Call</button>
-              </div>
+              <button className='bg-text-color hover:bg-[#616161] text-[white] rounded p-4 
+              text-sm w-full transition'>Send Message</button>
             </form>
           </div>
         </div>
