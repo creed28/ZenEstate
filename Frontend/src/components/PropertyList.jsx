@@ -9,13 +9,13 @@ const PropertyList = () => {
 
   if(loading){
     return (
-      <ImSpinner2 className='mx-auto animate-spin text-text-color text-4xl mt-[100px] bg-[white]' />
+      <ImSpinner2 className='mx-auto animate-spin text-text-color text-4xl mt-[60px] bg-[white]' />
     )
   }
 
   if(houses.length < 1){
     return (
-      <div className='text-center text-3xl text-[#979797] mt-1 py-10 bg-[white]'>
+      <div className='text-center text-3xl text-[#979797] pb-20 bg-[white]'>
         No properties with that criteria were found... :(
       </div>
     )

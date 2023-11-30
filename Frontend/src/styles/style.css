@@ -6,7 +6,7 @@
     body {
       @apply text-text-color box-border;
     }
-
+    
     .dropdown{
       @apply w-full lg:max-w-[296px] cursor-pointer;
     }

@@ -16,7 +16,7 @@ export const MainRouter = createBrowserRouter(
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route element={<MainLayout />}>
-        <Route path="/" element={<Home />} />
+        <Route path='/' element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/property/:id" element={<PropertyDetails />} />
         <Route path="/our-agents" element={<OurAgents />} />
