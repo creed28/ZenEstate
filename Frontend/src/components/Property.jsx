@@ -7,7 +7,7 @@ const Property = ({house}) => {
   } = house;
   
   return (
-    <div className='bg-[#fff] drop-shadow-xl p-5 mb-10 rounded-lg hover:scale-105
+    <div className='bg-[white] drop-shadow-xl p-5 mb-10 rounded-lg hover:scale-105
        w-full max-w-[352px] max-h-[560px] mx-auto cursor-pointer hover:drop-shadow-2xl transition'>
       <img className='mb-8' src={image} alt="" />
       <div className='mb-4 flex gap-x-2 text-sm'>
