@@ -1,6 +1,7 @@
 import React from 'react';
 import { createBrowserRouter, Route, createRoutesFromElements } from 'react-router-dom';
 import Home from '../pages/Home';
+import Properties from '../pages/Properties';
 import PropertyDetails from '../pages/PropertyDetails';
 import About from '../pages/About';
 import Login from '../pages/Login';
@@ -18,6 +19,7 @@ export const MainRouter = createBrowserRouter(
       <Route element={<MainLayout />}>
         <Route path='/' element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/properties" element={<Properties />} />
         <Route path="/property/:id" element={<PropertyDetails />} />
         <Route path="/our-agents" element={<OurAgents />} />
         <Route path='/profile' element={<Profile />} />
