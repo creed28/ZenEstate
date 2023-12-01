@@ -1,31 +1,14 @@
-import React, { useState, useEffect, useContext, useRef } from 'react';
+import React, { useContext } from 'react';
 import { BiSort } from 'react-icons/bi';
 import { Menu } from '@headlessui/react';
 import { HouseContext } from '../contexts/HouseContext';
 
 const SortDropdown = () => {
-  const [sortingOption, setSortingOption] = useState('');
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef(null);
+  const {sortingOption, setSortingOption} = useContext(HouseContext);
 
   const handleSortingChange = (option) => {
     setSortingOption(option);
-    setIsOpen(false);
   };
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsOpen(false);
-      }
-    };
-
-    window.addEventListener('click', handleClickOutside);
-
-    return () => {
-      window.removeEventListener('click', handleClickOutside);
-    };
-  }, []);
 
   const sortingOptions = [
     { value: 'price-asc', label: 'Price (Low to High)' },
@@ -35,24 +18,22 @@ const SortDropdown = () => {
   ];
 
   return (
-    <Menu as='div' className='dropdown relative' ref={dropdownRef}>
-      <Menu.Button onClick={() => setIsOpen(!isOpen)} className='dropdown-btn w-full text-left'>
+    <Menu as='div' className='dropdown relative'>
+      <Menu.Button className='dropdown-btn w-full text-left'>
         <BiSort className='dropdown-icon-primary' />
         <div className='text-[15px] font-medium leading-tight'>{sortingOption.label}</div>
       </Menu.Button>
 
-      {isOpen && (
-        <div className='dropdown-menu space-y-4'>
-          {sortingOptions.map((option) => (
-            <button
-              key={option.value}
-              onClick={() => handleSortingChange(option)}
-              className='w-full text-left text-[15px] hover:text-primary-blue focus:outline-none transition'>
-              {option.label}
-            </button>
-          ))}
-        </div>
-      )}
+      <Menu.Items as='ul' className='dropdown-menu space-y-4'>
+        {sortingOptions.map((option) => (
+          <Menu.Item as='li'
+            key={option.value}
+            onClick={() => handleSortingChange(option)}
+            className='cursor-pointer hover:text-[#616161] transition'>
+            {option.label}
+          </Menu.Item>
+         ))}
+      </Menu.Items>
     </Menu>
   );
 };

@@ -10,15 +10,16 @@ import { HouseContext } from '../contexts/HouseContext';
 
 const Properties = () => {
     const {handleClick} = useContext(HouseContext);
+    
   return (
     <section className="flex">
-      <div className="bg-[#fcfcfc] w-1/4 p-4 flex flex-col gap-y-2 fixed mt-10 ml-3
-        h-[420px] rounded-lg border">
+      <div className="bg-[#fcfcfc] w-1/4 px-4 py-6 flex flex-col gap-y-2 fixed mt-10 ml-3
+        h-[450px] rounded-lg border">
         <div className='flex items-center text-[2rem] font-semibold'>
             <MdFilterAlt />
             <span className='text-[1.8rem]'>Filters</span>
         </div>
-        <div className='flex flex-col items-center gap-y-6'>
+        <div className='flex flex-col items-center gap-y-8'>
             <CityDropdown />
             <PropertyDropdown />
             <PriceRangeDropdown />
@@ -31,7 +32,7 @@ const Properties = () => {
       </div>
       <div className="w-3/4 p-4 ml-auto overflow-y-auto mt-2">
         <div className="p-4 mb-4 flex items-center gap-x-2 ml-6">
-          Sort by
+          <span className='text-[1.1rem] font-semibold'>Sort by</span>
           <SortDropdown />
         </div>
         <PropertyList />

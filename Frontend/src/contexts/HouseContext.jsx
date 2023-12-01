@@ -14,6 +14,7 @@ const HouseContextProvider = ({children}) => {
   const [loading, setLoading] = useState(false);
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
+  const [sortingOption, setSortingOption] = useState('');
 
   useEffect(() => {
     const allCities = houses.map((house) => {
@@ -79,7 +80,9 @@ const HouseContextProvider = ({children}) => {
       minPrice,
       setMinPrice,
       maxPrice,
-      setMaxPrice
+      setMaxPrice,
+      sortingOption, 
+      setSortingOption
     }}>
       {children}
     </HouseContext.Provider>
