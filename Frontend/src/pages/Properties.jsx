@@ -9,7 +9,7 @@ import {RiSearch2Line} from 'react-icons/ri';
 import { HouseContext } from '../contexts/HouseContext';
 
 const Properties = () => {
-    const {handleClick} = useContext(HouseContext);
+    const {handleClick, handleReset} = useContext(HouseContext);
     
   return (
     <section className="flex">
@@ -29,10 +29,10 @@ const Properties = () => {
                   items-center text-[white] text-lg'>
                   <RiSearch2Line />
               </button>
-              <button className='border hover:border-[#8d8d8d] hover:text-[#8d8d8d]
+              <button onClick={() => handleReset()} className='border hover:border-[#8d8d8d] hover:text-[#8d8d8d]
                   transition w-full lg:max-w-[162px] h-16 rounded-lg flex justify-center
                   items-center text-lg'>
-                Clear
+                Reset
               </button>
             </div>
         </div>

@@ -62,6 +62,15 @@ const HouseContextProvider = ({children}) => {
     }, 2000)
   }
 
+  const handleReset = () => {
+    setCity('Location (any)');
+    setProperty('Property type (any)');
+    setMinPrice('');
+    setMaxPrice('');
+    setPrice('Price range (any)');
+    setHouses(housesData);
+  }
+
   return (
     <HouseContext.Provider value={{
       city,
@@ -82,7 +91,8 @@ const HouseContextProvider = ({children}) => {
       maxPrice,
       setMaxPrice,
       sortingOption, 
-      setSortingOption
+      setSortingOption,
+      handleReset
     }}>
       {children}
     </HouseContext.Provider>
