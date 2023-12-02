@@ -122,10 +122,16 @@ const PriceRangeDropdown = () => {
                 className='bg-primary-grey w-full h-[30px] p-1 rounded-md focus:bg-[#d9d9d9]
                   placeholder-[#484848] focus:outline-none transition focus:placeholder-[#989898]'
               />
-              <button type='submit' className='bg-[#525252] text-[white] w-20 h-20 rounded-md
-              hover:bg-[#616161] focus:outline-none transition'>
-              Set
+                <div className='flex justify-between'>
+              <button type='submit' className='bg-[#525252] text-[white] w-20 h-6 rounded-md
+                hover:bg-[#616161] focus:outline-none transition'>
+                Set
               </button>
+              <button className='border hover:border-[#868686] hover:text-[#868686] w-20 h-6 
+                rounded-md focus:outline-none transition'>
+                Clear
+              </button>
+              </div>
           </form>
         )
       }
