@@ -78,6 +78,13 @@ const PriceRangeDropdown = () => {
       setPrice('Price range (any)');
     };
   }, []);
+
+  const handleClear = () => {
+    setPrice('Price range (any)');
+    setMinPrice('');
+    setMaxPrice('');
+    setError(false);
+  }
   
   return (
     <Menu as='div' className='dropdown relative' ref={dropdownRef}>
@@ -127,8 +134,8 @@ const PriceRangeDropdown = () => {
                 hover:bg-[#616161] focus:outline-none transition'>
                 Set
               </button>
-              <button className='border hover:border-[#868686] hover:text-[#868686] w-20 h-6 
-                rounded-md focus:outline-none transition'>
+              <button onClick={() => handleClear()} className='border hover:border-[#868686] 
+               hover:text-[#868686] w-20 h-6 rounded-md focus:outline-none transition'>
                 Clear
               </button>
               </div>
