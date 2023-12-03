@@ -11,7 +11,7 @@ import { HouseContext } from '../contexts/HouseContext';
 const Properties = () => {
   const { handleClick, handleReset, loading, houses } = useContext(HouseContext);
   const [currentPage, setCurrentPage] = useState(1);
-  const propertiesPerPage = 9;
+  const propertiesPerPage = 6;
 
   const indexOfLastProperty = currentPage * propertiesPerPage;
   const indexOfFirstProperty = indexOfLastProperty - propertiesPerPage;
@@ -22,6 +22,18 @@ const Properties = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     handleClick();
   };
+
+  const handleFilter = () => {
+    setCurrentPage(1);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    handleClick();
+  }
+
+  const handleResetPagination = () => {
+    setCurrentPage(1);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    handleReset();
+  }
 
   return (
     <section className="flex">
@@ -36,12 +48,12 @@ const Properties = () => {
             <PropertyDropdown />
             <PriceRangeDropdown />
             <div className='flex w-full justify-center gap-x-4'>
-              <button onClick={() => handleClick()} className='bg-text-color hover:bg-[#616161] 
+              <button onClick={() => handleFilter()} className='bg-text-color hover:bg-[#616161] 
                   transition w-full lg:max-w-[162px] h-16 rounded-lg flex justify-center
                   items-center text-[white] text-lg'>
                   <RiSearch2Line />
               </button>
-              <button onClick={() => handleReset()} className='border hover:border-[#8d8d8d] 
+              <button onClick={() => handleResetPagination()} className='border hover:border-[#8d8d8d] 
               hover:text-[#8d8d8d] transition w-full lg:max-w-[162px] h-16 rounded-lg flex justify-center
                 items-center text-lg'>
                 Reset
