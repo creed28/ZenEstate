@@ -1,41 +1,37 @@
-import React, {useContext} from 'react';
-import {HouseContext} from '../contexts/HouseContext';
+/* eslint-disable react/prop-types */
+import React from 'react';
 import Property from './Property';
-import {Link} from 'react-router-dom';
-import {ImSpinner2} from 'react-icons/im';
+import { Link } from 'react-router-dom';
+import { ImSpinner2 } from 'react-icons/im';
 
-const PropertyList = () => {
-  const {houses, loading} = useContext(HouseContext);
-
-  if(loading){
+const PropertyList = ({ properties, loading }) => {
+  if (loading) {
     return (
       <ImSpinner2 className='mx-auto animate-spin text-text-color text-4xl mt-[60px] bg-[white]' />
-    )
+    );
   }
 
-  if(houses.length < 1){
+  if (properties.length < 1) {
     return (
       <div className='text-center text-3xl text-[#979797] pb-20 bg-[white]'>
         No properties with that criteria were found... :(
       </div>
-    )
+    );
   }
 
   return (
     <section className='bg-[white]'>
-      <div className="container mx-auto">
+      <div className='container mx-auto'>
         <div className='grid md:grid-cols-2 lg:grid-cols-3 pb-10 gap-4 lg:gap-x-14 lg:gap-y-9'>
-          {houses.map((house, index) => {
-            return (
-              <Link to={`/property/${house.id}`} key={index}>
-                <Property house={house} />
-              </Link>
-            )
-          })}
+          {properties.map((house, index) => (
+            <Link to={`/property/${house.id}`} key={index}>
+              <Property house={house} />
+            </Link>
+          ))}
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default PropertyList
+export default PropertyList;

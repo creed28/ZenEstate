@@ -1,19 +1,29 @@
-import React, {useContext} from 'react';
+// Properties.js
+
+import React, { useContext, useState } from 'react';
 import CityDropdown from '../components/CityDropdown';
 import PropertyDropdown from '../components/PropertyDropdown';
 import PriceRangeDropdown from '../components/PriceRangeDropdown';
 import PropertyList from '../components/PropertyList';
 import SortDropdown from '../components/SortDropdown';
-import {MdFilterAlt} from 'react-icons/md';
-import {RiSearch2Line} from 'react-icons/ri';
+import { MdFilterAlt } from 'react-icons/md';
+import { RiSearch2Line } from 'react-icons/ri';
 import { HouseContext } from '../contexts/HouseContext';
 
 const Properties = () => {
-    const {handleClick, handleReset, loading} = useContext(HouseContext);
-    
+  const { handleClick, handleReset, loading, houses } = useContext(HouseContext);
+  const [currentPage, setCurrentPage] = useState(1);
+  const propertiesPerPage = 9;
+
+  const indexOfLastProperty = currentPage * propertiesPerPage;
+  const indexOfFirstProperty = indexOfLastProperty - propertiesPerPage;
+  const currentProperties = houses.slice(indexOfFirstProperty, indexOfLastProperty);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <section className="flex">
-      <div className={`bg-[#fcfcfc] w-1/4 px-4 py-6 flex flex-col gap-y-2 ${loading ? `` : 'fixed'} mt-10 ml-3
+       <div className={`bg-[#fcfcfc] w-1/4 px-4 py-6 flex flex-col gap-y-2 ${loading ? `` : 'fixed'} mt-10 ml-3
         h-[450px] rounded-lg border`}>
         <div className='flex items-center text-[2rem] font-semibold'>
             <MdFilterAlt />
@@ -42,7 +52,19 @@ const Properties = () => {
           <span className='text-[1.1rem] font-semibold'>Sort by</span>
           <SortDropdown />
         </div>
-        <PropertyList />
+        <PropertyList properties={currentProperties} />
+        <div className="flex justify-center mt-4">
+          {Array.from({ length: Math.ceil(houses.length / propertiesPerPage) }, (_, i) => i + 1).map((page) => (
+            <button
+              key={page}
+              onClick={() => paginate(page)}
+              className={`mx-2 px-4 py-2 rounded-lg ${currentPage === page ? 'bg-[#616161] text-[white]' : 
+              'bg-[white] text-[#616161] border'}`}
+            >
+              {page}
+            </button>
+          ))}
+        </div>
       </div>
     </section>
   );
