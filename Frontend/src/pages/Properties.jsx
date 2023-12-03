@@ -54,7 +54,7 @@ const Properties = () => {
           <span className='text-[1.1rem] font-semibold'>Sort by</span>
           <SortDropdown />
         </div>
-        <PropertyList properties={currentProperties} />
+        <PropertyList properties={currentProperties} loading={loading} />
         <div className="flex justify-center mt-4">
           {Array.from({ length: Math.ceil(houses.length / propertiesPerPage) },
            (_, i) => i + 1).map((page) => (
