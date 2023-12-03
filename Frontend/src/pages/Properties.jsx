@@ -1,5 +1,3 @@
-// Properties.js
-
 import React, { useContext, useState } from 'react';
 import CityDropdown from '../components/CityDropdown';
 import PropertyDropdown from '../components/PropertyDropdown';
@@ -21,13 +19,14 @@ const Properties = () => {
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
-    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to the top of the page
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    handleClick();
   };
 
   return (
     <section className="flex">
-      <div className={`bg-[#fcfcfc] w-1/4 px-4 py-6 flex flex-col gap-y-2 ${loading ? `` : 'fixed'} mt-10 ml-3
-        h-[450px] rounded-lg border`}>
+      <div className={`bg-[#fcfcfc] w-1/4 px-4 py-6 flex flex-col gap-y-2 
+        ${loading ? '' : houses.length < 1 ? '' : 'fixed'} mt-10 ml-3 h-[450px] rounded-lg border`}>
         <div className='flex items-center text-[2rem] font-semibold'>
             <MdFilterAlt />
             <span className='text-[1.8rem]'>Filters</span>
@@ -42,9 +41,9 @@ const Properties = () => {
                   items-center text-[white] text-lg'>
                   <RiSearch2Line />
               </button>
-              <button onClick={() => handleReset()} className='border hover:border-[#8d8d8d] hover:text-[#8d8d8d]
-                  transition w-full lg:max-w-[162px] h-16 rounded-lg flex justify-center
-                  items-center text-lg'>
+              <button onClick={() => handleReset()} className='border hover:border-[#8d8d8d] 
+              hover:text-[#8d8d8d] transition w-full lg:max-w-[162px] h-16 rounded-lg flex justify-center
+                items-center text-lg'>
                 Reset
               </button>
             </div>
@@ -57,7 +56,8 @@ const Properties = () => {
         </div>
         <PropertyList properties={currentProperties} />
         <div className="flex justify-center mt-4">
-          {Array.from({ length: Math.ceil(houses.length / propertiesPerPage) }, (_, i) => i + 1).map((page) => (
+          {Array.from({ length: Math.ceil(houses.length / propertiesPerPage) },
+           (_, i) => i + 1).map((page) => (
             <button
               key={page}
               onClick={() => paginate(page)}
