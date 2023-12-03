@@ -19,11 +19,14 @@ const Properties = () => {
   const indexOfFirstProperty = indexOfLastProperty - propertiesPerPage;
   const currentProperties = houses.slice(indexOfFirstProperty, indexOfLastProperty);
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to the top of the page
+  };
 
   return (
     <section className="flex">
-       <div className={`bg-[#fcfcfc] w-1/4 px-4 py-6 flex flex-col gap-y-2 ${loading ? `` : 'fixed'} mt-10 ml-3
+      <div className={`bg-[#fcfcfc] w-1/4 px-4 py-6 flex flex-col gap-y-2 ${loading ? `` : 'fixed'} mt-10 ml-3
         h-[450px] rounded-lg border`}>
         <div className='flex items-center text-[2rem] font-semibold'>
             <MdFilterAlt />
