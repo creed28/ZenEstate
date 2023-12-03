@@ -9,12 +9,12 @@ import {RiSearch2Line} from 'react-icons/ri';
 import { HouseContext } from '../contexts/HouseContext';
 
 const Properties = () => {
-    const {handleClick, handleReset} = useContext(HouseContext);
+    const {handleClick, handleReset, loading} = useContext(HouseContext);
     
   return (
     <section className="flex">
-      <div className="bg-[#fcfcfc] w-1/4 px-4 py-6 flex flex-col gap-y-2 fixed mt-10 ml-3
-        h-[450px] rounded-lg border">
+      <div className={`bg-[#fcfcfc] w-1/4 px-4 py-6 flex flex-col gap-y-2 ${loading ? `` : 'fixed'} mt-10 ml-3
+        h-[450px] rounded-lg border`}>
         <div className='flex items-center text-[2rem] font-semibold'>
             <MdFilterAlt />
             <span className='text-[1.8rem]'>Filters</span>

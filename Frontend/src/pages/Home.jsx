@@ -1,12 +1,10 @@
 import React from 'react';
 import Image from '../assets/img/main-image.jpg';
 import Search from '../components/Search';
-import PropertyList from '../components/PropertyList';
 import {Link} from 'react-router-dom';
 
 const Home = () => {
   return (
-    <>
       <section className='max-h-[545px] mb-8 xl:mb-24 bg-primary-grey'>
         <div className='flex flex-col lg:flex-row'>
           <div className='lg:ml-8 xl:ml-[135px] flex flex-col items-center 
@@ -30,8 +28,6 @@ const Home = () => {
         </div>
        <Search />
      </section>
-     <PropertyList />
-   </>
   )
 }
 
