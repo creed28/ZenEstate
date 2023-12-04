@@ -1,6 +1,7 @@
 import React from 'react';
 import LoginImage from '../assets/img/login-image.avif';
 import Logo from '../assets/icons/logo.png';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   return (
@@ -51,7 +52,7 @@ const Login = () => {
         </div>
 
         <div className='w-full flex items-center justify-center'>
-          <p className='text-sm font-normal text-[black]'>Don't have an account? <span className='font-semibold underline underline-offset-2 cursor-pointer'>Sign Up for free</span></p>
+          <p className='text-sm font-normal text-[black]'>Don't have an account? <Link to={'/register'} className='font-semibold underline underline-offset-2 cursor-pointer'>Sign Up for free</Link></p>
         </div>
       </section>
     </main>
