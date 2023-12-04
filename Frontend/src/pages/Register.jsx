@@ -9,7 +9,8 @@ const Register = () => {
       <section className='w-1/2 h-full flex flex-col'>
         <div className='absolute top-[19%] left-[10%] flex flex-col'>
           <h1 className='text-4xl text-[white] text-center font-bold my-4'>Find Your Dream Home Today</h1>
-          <p className='text-xl text-[white] font-normal'>Start for free and browse through the best offers from +90k customers.</p>
+          <p className='text-xl text-[white] font-normal'>Start for free and browse through the best offers 
+          from +90k customers.</p>
         </div>
         <img src={LoginImage} className='w-full h-full object-cover' alt="" />
       </section>
@@ -27,13 +28,16 @@ const Register = () => {
           </div>
 
           <form className='w-full flex flex-col'>
-            <input className='w-full text-[black] py-2 my-2 bg-[transparent] border-b border-[black] outline-none focus:outline-none' 
+            <input className='w-full text-[black] py-2 my-2 bg-[transparent] border-b 
+              border-[black] outline-none focus:outline-none' 
             placeholder='Name'
             type="text" />
-            <input className='w-full text-[black] py-2 my-2 bg-[transparent] border-b border-[black] outline-none focus:outline-none' 
+            <input className='w-full text-[black] py-2 my-2 bg-[transparent] border-b 
+              border-[black] outline-none focus:outline-none' 
             placeholder='Email'
             type="email" />
-            <input className='w-full text-[black] py-2 my-2 bg-[transparent] border-b border-[black] outline-none focus:outline-none' 
+            <input className='w-full text-[black] py-2 my-2 bg-[transparent] border-b 
+              border-[black] outline-none focus:outline-none' 
             placeholder='Password'
             type="password" />
           </form>
@@ -46,14 +50,19 @@ const Register = () => {
           </div>
 
           <div className='w-full flex flex-col my-4'>
-            <button className='w-full bg-text-color text-[white] rounded-md p-4 my-2 font-semibold text-center flex items-center justify-center'>
+            <button className='w-full bg-text-color text-[white] rounded-md p-4 my-2 font-semibold 
+              text-center flex items-center justify-center'>
              Register
             </button>
           </div>
         </div>
 
         <div className='w-full flex items-center justify-center'>
-          <p className='text-sm font-normal text-[black]'>Already have an account? <Link to={'/login'} className='font-semibold underline underline-offset-2 cursor-pointer'>Login</Link></p>
+          <p className='text-sm font-normal text-[black]'>Already have an account?&nbsp;  
+            <Link to={'/login'} className='font-semibold underline underline-offset-2 cursor-pointer'>
+              Login
+            </Link>
+          </p>
         </div>
       </section>
     </main>
