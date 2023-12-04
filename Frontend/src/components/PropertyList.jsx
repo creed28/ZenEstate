@@ -21,7 +21,7 @@ const PropertyList = ({ properties, loading }) => {
   }
 
   return (
-    <section className='bg-[white]'>
+    <section>
       <div className='container mx-auto'>
         <div className='grid md:grid-cols-2 lg:grid-cols-3 pb-10 gap-4 lg:gap-x-14 lg:gap-y-9'>
           {properties.map((house, index) => (
