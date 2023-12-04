@@ -1,9 +1,38 @@
-import React from 'react';
+import React, {useState} from 'react';
 import LoginImage from '../assets/img/login-image.avif';
 import Logo from '../assets/icons/logo.png';
 import { Link } from 'react-router-dom';
+import axios from '../api/axios';
 
 const Register = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMsg, setErrorMsg] = useState('')
+
+  const handleSubmit = async () => {
+    try{
+      const response = await axios.post('User/Register',
+      JSON.stringify({name, email, phone, password}),
+      {
+        headers: {'Content-Type' : 'application/json'},
+      }
+    );
+      console.log(JSON.stringify(response?.data))
+    } catch(error){
+      if(!error?.response){
+        setErrorMsg('No response');
+      }else if(error.response?.status === 400){
+        setErrorMsg('Missing info');
+      }else if(error.response?.status === 401){
+        setErrorMsg('Unathorized');
+      }else{
+        setErrorMsg('Error');
+      }
+    }
+  }
+
   return (
     <main className='w-full h-screen flex items-start'>
       <section className='w-1/2 h-full flex flex-col'>
@@ -31,15 +60,19 @@ const Register = () => {
             <input className='w-full text-[black] py-2 my-2 bg-[transparent] border-b 
               border-[black] outline-none focus:outline-none' 
             placeholder='Name'
-            type="text" />
+            type="text" value={name} onChange={(e) => setName(e.target.value)}/>
             <input className='w-full text-[black] py-2 my-2 bg-[transparent] border-b 
               border-[black] outline-none focus:outline-none' 
             placeholder='Email'
-            type="email" />
+            type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <input className='w-full text-[black] py-2 my-2 bg-[transparent] border-b 
+              border-[black] outline-none focus:outline-none' 
+            placeholder='Phone'
+            type="phone" value={phone} onChange={(e) => setPhone(e.target.value)}/>
             <input className='w-full text-[black] py-2 my-2 bg-[transparent] border-b 
               border-[black] outline-none focus:outline-none' 
             placeholder='Password'
-            type="password" />
+            type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
           </form>
 
           <div className='w-full flex items-center justify-between'>
@@ -50,8 +83,8 @@ const Register = () => {
           </div>
 
           <div className='w-full flex flex-col my-4'>
-            <button className='w-full bg-text-color text-[white] rounded-md p-4 my-2 font-semibold 
-              text-center flex items-center justify-center'>
+            <button onClick={() => handleSubmit()} className='w-full bg-text-color text-[white] 
+            rounded-md p-4 my-2 font-semibold text-center flex items-center justify-center'>
              Register
             </button>
           </div>
@@ -65,6 +98,7 @@ const Register = () => {
           </p>
         </div>
       </section>
+      <p aria-live='assertive'>{errorMsg}</p>
     </main>
   )
 }

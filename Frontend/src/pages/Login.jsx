@@ -1,9 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import LoginImage from '../assets/img/login-image.avif';
 import Logo from '../assets/icons/logo.png';
 import { Link } from 'react-router-dom';
+import axios from '../api/axios';
 
 const Login = () => {
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = async () => {
+    try{
+      const response = await axios.post('User/Login',
+      JSON.stringify({name, phone, email, password}),
+      {
+        headers: {'Content-Type' : 'application/json'},
+      }
+    );
+      console.log(JSON.stringify(response?.data?.token))
+    } catch(error){
+      console.log(error);
+    }
+  }
+
   return (
     <main className='w-full h-screen flex items-start'>
       <section className='w-1/2 h-full flex flex-col'>
@@ -31,11 +51,11 @@ const Login = () => {
             <input className='w-full text-[black] py-2 my-2 bg-[transparent] border-b border-[black]
              outline-none focus:outline-none' 
             placeholder='Email'
-            type="email" />
+            type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
             <input className='w-full text-[black] py-2 my-2 bg-[transparent] border-b border-[black]
              outline-none focus:outline-none' 
             placeholder='Password'
-            type="password" />
+            type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
           </form>
 
           <div className='w-full flex items-center justify-between'>
@@ -49,8 +69,8 @@ const Login = () => {
           </div>
 
           <div className='w-full flex flex-col my-4'>
-            <button className='w-full bg-text-color text-[white] rounded-md p-4 my-2 font-semibold
-             text-center flex items-center justify-center'>
+            <button onClick={() => handleSubmit()} className='w-full bg-text-color text-[white] 
+            rounded-md p-4 my-2 font-semibold text-center flex items-center justify-center'>
               Log in
             </button>
           </div>
