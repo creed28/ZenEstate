@@ -4,6 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System;
+using ZenEstateAPI.Data;
+using ZenEstateAPI.Services.Interfaces;
+using ZenEstateAPI.Services;
 
 namespace ZenEstateAPI
 {
@@ -33,6 +36,14 @@ namespace ZenEstateAPI
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddDbContext<AppDbContext>(options =>
+            {
+                options.UseNpgsql(builder.Configuration.GetConnectionString("ZenEstateDb"));
+            });
+
+            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IAuthService, AuthService>();
+
             builder.Services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -48,7 +59,7 @@ namespace ZenEstateAPI
                 jwt.RequireHttpsMetadata = false;
                 jwt.TokenValidationParameters = new TokenValidationParameters
                 {
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("this is the best token ever aaaaaaahertjetjaetja")),
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ryan gosling drive oooooooooooomg boiiiii look at him token btw")),
                     ValidateIssuer = false,
                     ValidateAudience = false,
                     ValidateLifetime = true,
