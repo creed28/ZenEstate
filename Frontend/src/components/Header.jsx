@@ -30,10 +30,10 @@ const Header = () => {
             </li>
           }
           {auth.user ? 
-            <Link to={'/login'} onClick={()=> {setAuth({});}} className='bg-[#525252] py-2 px-3 
+            <button onClick={()=> {setAuth({});}} className='bg-[#525252] py-2 px-3 
               rounded-3xl text-[#f8f7f7] hover:bg-[#616161]'>
               Log Out
-            </Link> 
+            </button> 
             : 
             <Link to={'/register'}>
               <li className='bg-[#525252] py-2 px-3 rounded-3xl 
