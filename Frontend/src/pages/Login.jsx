@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import LoginImage from '../assets/img/login-image.avif';
 import Logo from '../assets/icons/logo.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from '../api/axios';
+import { useAuth } from '../hooks/useAuth';
 
 const Login = () => {
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [name] = useState('');
+  const [phone] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+  const { setAuth } = useAuth();
 
   const handleSubmit = async () => {
     try{
@@ -16,10 +19,18 @@ const Login = () => {
       JSON.stringify({name, phone, email, password}),
       {
         headers: {'Content-Type' : 'application/json'},
+        withCredentials: true
       }
     );
-      console.log(JSON.stringify(response?.data?.token))
-    } catch(error){
+
+    console.log(JSON.stringify(response?.data));
+    const accessToken = response?.data?.token;
+    const username = response?.data?.userName;
+    setAuth({ user: username, accessToken });
+    setEmail('');
+    setPassword('');
+    navigate('/');
+    } catch (error) {
       console.log(error);
     }
   }
@@ -78,7 +89,7 @@ const Login = () => {
 
         <div className='w-full flex items-center justify-center'>
           <p className='text-sm font-normal text-[black]'>Don't have an account? <Link to={'/register'} 
-          className='font-semibold underline underline-offset-2 cursor-pointer'>Sign Up for free</Link></p>
+          className='font-semibold underline underline-offset-2 cursor-pointer'>Register for free</Link></p>
         </div>
       </section>
     </main>

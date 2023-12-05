@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import LoginImage from '../assets/img/login-image.avif';
 import Logo from '../assets/icons/logo.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate  } from 'react-router-dom';
 import axios from '../api/axios';
 
 const Register = () => {
@@ -9,7 +9,10 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMsg, setErrorMsg] = useState('')
+  const [errorMsg, setErrorMsg] = useState('');
+
+  
+  const navigate = useNavigate();
 
   const handleSubmit = async () => {
     try{
@@ -17,9 +20,11 @@ const Register = () => {
       JSON.stringify({name, email, phone, password}),
       {
         headers: {'Content-Type' : 'application/json'},
+        withCredentials: true
       }
     );
-      console.log(JSON.stringify(response?.data))
+      navigate("/login");
+      console.log(JSON.stringify(response?.data));
     } catch(error){
       if(!error?.response){
         setErrorMsg('No response');
