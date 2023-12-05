@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using ZenEstateAPI.Models.DTOs;
-using ZenEstateAPI.Services;
 using ZenEstateAPI.Services.Interfaces;
 
 namespace ZenEstateAPI.Controllers
@@ -42,14 +40,22 @@ namespace ZenEstateAPI.Controllers
 
             var user = _userService.GetUser(request);
 
-            if(user is null)
+            if (user is null)
             {
                 return BadRequest();
             }
 
             string token = _authService.CreateToken(user);
 
-            return Ok(new {token});
+            string userName = user.Name;
+
+            return Ok(new { token, userName });
+        }
+
+        [HttpGet("GetAllUsers")]
+        public ActionResult GetAllUsers()
+        {
+            return Ok(_userService.GetAllUsers());
         }
     }  
 }

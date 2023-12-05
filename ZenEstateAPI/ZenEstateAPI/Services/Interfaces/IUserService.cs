@@ -7,6 +7,7 @@ namespace ZenEstateAPI.Services.Interfaces
     {
         public Task RegisterUser(UserDTO request);
         public User? GetUser(UserDTO request);
+        public List<User> GetAllUsers();
 
     }
 }

@@ -47,5 +47,10 @@ namespace ZenEstateAPI.Services
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
         }
+
+        public List<User> GetAllUsers()
+        {
+            return _context.Users.ToList();
+        }
     }
 }
