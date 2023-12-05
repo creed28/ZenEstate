@@ -1,6 +1,7 @@
 import React from 'react';
 import { createBrowserRouter, Route, createRoutesFromElements } from 'react-router-dom';
 import Home from '../pages/Home';
+import About from '../pages/About';
 import Properties from '../pages/Properties';
 import PropertyDetails from '../pages/PropertyDetails';
 import CreateProperty from '../pages/CreateProperty';
@@ -17,6 +18,7 @@ export const MainRouter = createBrowserRouter(
       <Route path="/register" element={<Register />} />
       <Route element={<MainLayout />}>
         <Route path='/' element={<Home />} />
+        <Route path='/about' element={<About />} />
         <Route path="/properties" element={<Properties />} />
         <Route path="/property/:id" element={<PropertyDetails />} />
         <Route element={<ProtectedRoute />}>
