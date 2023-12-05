@@ -7,6 +7,15 @@ import { FaUser } from 'react-icons/fa';
 const Header = () => {
   const {auth, setAuth} = useAuth();
 
+  const linksData = [
+    { id: 1, to: '/', text: 'Home' },
+    { id: 2, to: '/about', text: 'About' },
+    { id: 3, to: '/properties', text: 'Properties' },
+    { id: 4, to: '/create-property', text: 'Create Property' },
+    { id: 5, to: '/contract-list', text: 'Contract List' },
+
+  ];
+
   return (
     <header className='bg-primary-grey flex items-center justify-between py-3 px-20 border-b 
       border-[#dadada]'>
@@ -21,9 +30,13 @@ const Header = () => {
       </Link>
       <nav>
         <ul className='flex items-center gap-8 font-medium text-[15px]'>
-          <li className='hover:text-[#616161]'><Link to={'/properties'}>Properties</Link></li>
-          <li className='hover:text-[#616161]'><Link to={'/create-property'}>Create Property</Link></li>
-          <li className='hover:text-[#616161]'><Link to={'/contract-list'}>Contract List</Link></li>
+          {linksData.map((item) =>
+            <li key={item.id}>
+              <Link key={item.id} to={item.to} className='hover:text-[#616161]'>
+                  {item.text}
+              </Link>
+            </li>
+          )}
           {auth.user && 
             <li className='text-[1.1rem] text-[black] flex items-center gap-x-1'>
               <FaUser />{auth.user}
