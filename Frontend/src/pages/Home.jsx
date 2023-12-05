@@ -41,16 +41,17 @@ const Home = () => {
       </section>
       <div className='flex flex-col gap-y-[3rem]'>
           <section className='flex items-center gap-x-[8rem] mx-auto'>
-            <div className='max-w-[655px] pl-2'>
+            <div className='max-w-[675px] pl-6'>
               <h3 className='text-3xl lg:text-[60px] font-semibold leading-[4.6rem]'>
-                When <span className='highlight'>real estate</span> meets <span className='highlight'>minimalism</span>
+                When <span className='highlight font-bold'>real estate</span> meets &nbsp;
+                <span className='highlight font-bold'>minimalism</span>
               </h3>
-              <Link to={'/about'} className='underline underline-offset-4 text-[#464646] cursor-pointer pt-4 
-                flex items-center text-[1.1rem] font-semibold'>
+              <p className='pt-8 font-medium'>A simpler real estate marketplace for simpler life.</p>
+              <Link to={'/about'} className='custom-link'>
                  Learn More
               </Link>
             </div>
-            <div className='hidden lg:flex mt-10 mr-5'>
+            <div className='hidden lg:flex mt-10 mr-5 highlight-image-1'>
                 <img src={SectionImage} alt="Hero House Image" className='w-[650px] h-[450px]' />
             </div>
           </section>
