@@ -11,7 +11,6 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
 
-  
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
@@ -41,7 +40,7 @@ const Register = () => {
   return (
     <main className='w-full h-screen flex items-start'>
       <section className='w-1/2 h-full flex flex-col'>
-        <div className='absolute top-[19%] left-[10%] flex flex-col'>
+        <div className='absolute top-[14%] left-[5%] flex flex-col'>
           <h1 className='text-4xl text-[white] text-center font-bold my-4'>Find Your Dream Home Today</h1>
           <p className='text-xl text-[white] font-normal'>Start for free and browse through the best offers 
           from +90k customers.</p>
