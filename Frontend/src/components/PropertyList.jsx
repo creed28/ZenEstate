@@ -8,13 +8,13 @@ const PropertyList = ({ properties, loading }) => {
 
   if (loading) {
     return (
-      <ImSpinner2 className='mx-auto animate-spin text-text-color text-4xl mt-[60px] bg-[white]' />
+      <ImSpinner2 className='mx-auto animate-spin text-text-color text-4xl mt-[60px] bg-[#fafafa]' />
     );
   }
 
   if (properties.length < 1) {
     return (
-      <div className='text-center text-3xl text-[#979797] pb-20 bg-[white]'>
+      <div className='text-center text-3xl text-[#979797] pb-20 bg-[#fafafa]'>
         No properties with that criteria were found... :(
       </div>
     );

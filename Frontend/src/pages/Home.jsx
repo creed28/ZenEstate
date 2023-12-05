@@ -25,7 +25,7 @@ const Home = () => {
                 </p>
                 {auth.user ? 
                   <h3 className='pl-4 text-3xl lg:text-[45px] font-semibold leading-none'>
-                    Hello, <span className='text-[#616161]'>{auth.user}</span> ...
+                    Hello, <span className='text-[#616161]'>{auth.user}</span>
                   </h3>
                   : 
                   <Link to={'/register'} className='bg-[#525252] text-[1.2rem] py-2 px-5 rounded-3xl 
