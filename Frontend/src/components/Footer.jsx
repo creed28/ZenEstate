@@ -7,7 +7,7 @@ import {
  
 const Footer = () => {
   return (
-    <footer className='mt-5'>
+    <footer>
       <section className='bg-primary-grey h-1/2 w-full flex md:flex-row flex-col 
         justify-around items-start p-20 pt-10'>
         <div className='p-5'>
