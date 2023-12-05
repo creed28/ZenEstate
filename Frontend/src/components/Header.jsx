@@ -1,8 +1,12 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import Logo from '../assets/icons/logo.png';
+import { useAuth } from '../hooks/useAuth';
+import { FaUser } from 'react-icons/fa';
 
 const Header = () => {
+  const {auth, setAuth} = useAuth();
+
   return (
     <header className='bg-primary-grey flex items-center justify-between py-3 px-20 border-b 
       border-[#dadada]'>
@@ -20,10 +24,24 @@ const Header = () => {
           <li className='hover:text-[#616161]'><Link to={'/properties'}>Properties</Link></li>
           <li className='hover:text-[#616161]'><Link to={'/create-property'}>Create Property</Link></li>
           <li className='hover:text-[#616161]'><Link to={'/contract-list'}>Contract List</Link></li>
-          <Link to={'/register'}><li className='bg-[#525252] py-2 px-3 rounded-3xl 
-            text-[#f8f7f7] hover:bg-[#616161]'>
-            Get Started
-          </li></Link>
+          {auth.user && 
+            <li className='text-[1.1rem] text-[black] flex items-center gap-x-1'>
+              <FaUser />{auth.user}
+            </li>
+          }
+          {auth.user ? 
+            <Link to={'/login'} onClick={()=> {setAuth({});}} className='bg-[#525252] py-2 px-3 
+              rounded-3xl text-[#f8f7f7] hover:bg-[#616161]'>
+              Log Out
+            </Link> 
+            : 
+            <Link to={'/register'}>
+              <li className='bg-[#525252] py-2 px-3 rounded-3xl 
+                 text-[#f8f7f7] hover:bg-[#616161]'>
+                Get Started
+              </li>
+            </Link>
+          }
         </ul>
       </nav>
     </header>
