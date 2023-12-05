@@ -1,9 +1,10 @@
 import React from 'react';
 import Image from '../assets/img/main-image.jpg';
-import SectionImage from '../assets/img/section-image.avif'
+import SectionImage from '../assets/img/section-image.avif';
 import Search from '../components/Search';
 import {Link} from 'react-router-dom';
 import {useAuth} from '../hooks/useAuth';
+import JoinUs from '../components/JoinUs';
 
 const Home = () => {
   const {auth} = useAuth();
@@ -46,8 +47,8 @@ const Home = () => {
                 When <span className='highlight font-bold'>real estate</span> meets &nbsp;
                 <span className='highlight font-bold'>minimalism</span>
               </h3>
-              <p className='pt-8 font-medium'>A simpler real estate marketplace for simpler life.</p>
-              <Link to={'/about'} className='custom-link'>
+              <p className='pt-8 font-medium pl-2'>A simpler real estate marketplace for simpler life.</p>
+              <Link to={'/about'} className='custom-link ml-2'>
                  Learn More
               </Link>
             </div>
@@ -56,9 +57,7 @@ const Home = () => {
             </div>
           </section>
           <div className='border border-1 border-primary-grey mt-[3rem]'></div>
-          <section>
-
-          </section>
+          <JoinUs />
       </div>
      </main>
   )
