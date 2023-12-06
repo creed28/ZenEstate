@@ -25,6 +25,7 @@ const Login = () => {
 
     console.log(JSON.stringify(response?.data));
     const accessToken = response?.data?.token;
+    localStorage.setItem('token', accessToken);
     const username = response?.data?.userName;
     setAuth({ user: username, accessToken });
     setEmail('');
