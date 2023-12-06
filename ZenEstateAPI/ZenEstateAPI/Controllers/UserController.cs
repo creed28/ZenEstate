@@ -49,8 +49,9 @@ namespace ZenEstateAPI.Controllers
             string token = _authService.CreateToken(user);
 
             string userName = user.Name;
+            int userId = user.Id;
 
-            return Ok(new { token, userName });
+            return Ok(new { token, userName,  userId});
         }
 
         [HttpGet("GetAllUsers")]
@@ -67,9 +68,6 @@ namespace ZenEstateAPI.Controllers
             {
                 return NotFound();
             }
-
-
-
             return Ok(user);
         }
 
