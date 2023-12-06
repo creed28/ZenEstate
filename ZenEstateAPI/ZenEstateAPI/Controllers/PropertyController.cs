@@ -44,17 +44,13 @@ namespace ZenEstateAPI.Controllers
                 return NotFound();
             }
 
-            var imagePath = @property.ImageName;
+            /*var imagePath = @property.ImageName;
 
             if (System.IO.File.Exists(imagePath))
             {
-                // Read the image file into a byte array
-
                 var imageData = System.IO.File.ReadAllBytes(imagePath);
                 return Ok(new { property, imageData });
-                // Return the image with the appropriate content type
-                // return File(imageData, "image/jpeg");
-            }
+            }*/
 
             return Ok(property);
         }
