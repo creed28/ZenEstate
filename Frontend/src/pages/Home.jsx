@@ -10,9 +10,9 @@ import Property from '../components/Property';
 
 const Home = () => {
   const {auth} = useAuth();
-  const {houses} = useContext(HouseContext);
+  const {filteredAndSortedHouses} = useContext(HouseContext);
 
-  const selectedHouses = houses.filter((house) => [3, 6, 10].includes(house.id));
+  const selectedHouses = filteredAndSortedHouses?.filter((house) => [3, 6, 10].includes(house.id));
 
   return (
     <main>
@@ -65,7 +65,7 @@ const Home = () => {
           <section className='flex flex-col items-center gap-y-[3rem]'>
             <h3 className='text-xl lg:text-[28px] font-semibold'>Featured Properties</h3>
             <section className='flex justify-center gap-x-[3rem]'>
-              {selectedHouses.map((house, index) => (
+              {selectedHouses?.map((house, index) => (
                 <Link to={`/property/${house.id}`} key={index}>
                   <Property house={house} />
                 </Link>
