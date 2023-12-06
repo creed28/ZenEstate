@@ -11,10 +11,14 @@ const Header = () => {
     { id: 1, to: '/', text: 'Home' },
     { id: 2, to: '/about', text: 'About' },
     { id: 3, to: '/properties', text: 'Properties' },
-    { id: 4, to: '/create-property', text: 'Create Property' },
-    { id: 5, to: '/contract-list', text: 'Contract List' },
-
   ];
+
+  const conditionalData = [
+    {id: 1, to: '/create-property', text: 'Create Property', styling: 'hover:text-[#616161]'},
+    {id: 2, to: '/contract-list', text: 'Contract List', styling: 'hover:text-[#616161]'},
+    {id: 3, to: '', text: <>{<FaUser />}{auth.user}</>, 
+      styling: 'text-[1.1rem] text-[black] flex items-center gap-x-1' }
+  ]
 
   return (
     <header className='bg-primary-grey flex items-center justify-between py-3 px-20 border-b 
@@ -38,9 +42,13 @@ const Header = () => {
             </li>
           )}
           {auth.user && 
-            <li className='text-[1.1rem] text-[black] flex items-center gap-x-1'>
-              <FaUser />{auth.user}
-            </li>
+            conditionalData.map((item) =>
+              <li key={item.id}>
+                <Link key={item.id} to={item.to} className={item.styling}>
+                    {item.text}
+                </Link>
+              </li>
+            )
           }
           {auth.user ? 
             <button onClick={()=> {setAuth({});}} className='bg-[#525252] py-2 px-3 
