@@ -65,6 +65,7 @@ const PropertyDetails = () => {
                 <div className='font-bold text-lg'>
                   {house.agent.name}
                 </div>
+                <p className='text-[14px]'>{house.agent.phone}</p>
                 <Link to='' className='text-sm'>View Listings</Link>
               </div>
             </div>
