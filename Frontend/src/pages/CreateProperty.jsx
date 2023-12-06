@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import CreatePropertyImage from '../assets/img/create-page-photo.jpg';
 import Logo from '../assets/icons/logo.png';
 import { useNavigate } from 'react-router-dom';
 import axios from '../api/axios';
+import {useAuth} from '../hooks/useAuth';
+import { HouseContext } from '../contexts/HouseContext';
 
 const CreateProperty = () => {
   const [name, setName] = useState('');
@@ -18,8 +20,9 @@ const CreateProperty = () => {
   const [image, setImage] = useState(null);
   const [imageName, setImageName] = useState('');
   const [errors, setErrors] = useState('');
+  const {auth} = useAuth();
   const navigate = useNavigate();
-
+  const{updateQuery, getRandomImage} = useContext(HouseContext);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -55,12 +58,14 @@ const CreateProperty = () => {
         return;
       }
 
-      if (!name || !city || !address || !price || !year || !bathrooms || !area || !bedrooms || !type || !image) {
+      if (!name || !city || !address || !price || !year || !bathrooms || !area || 
+        !bedrooms || !type || !image) {
         setErrors('*All fields are required');
         return;
       }
 
       const data = new FormData();
+      data.append('ownerId', auth.userId);
       data.append('name', name);
       data.append('description', description);
       data.append('type', type);
@@ -72,9 +77,11 @@ const CreateProperty = () => {
       data.append('price', price);
       data.append('area', area);
       data.append('imageFile', image);
-      data.append('imageName', imageName);
+      data.append('imageName', getRandomImage());
 
-      await axios.post('/Property/CreateProperty', data);
+      //await axios.post('/Property/CreateProperty', data);
+      await axios.post('/Contract/CreateContract', data);
+      updateQuery();
       navigate('/properties');
     } catch (err) {
       console.log(err);
