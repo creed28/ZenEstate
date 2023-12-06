@@ -11,7 +11,7 @@ using ZenEstateAPI.Data;
 namespace ZenEstateAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231206133554_Initial")]
+    [Migration("20231206184529_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -117,6 +117,9 @@ namespace ZenEstateAPI.Migrations
 
                     b.Property<double>("Price")
                         .HasColumnType("double precision");
+
+                    b.Property<int>("PropertyContractId")
+                        .HasColumnType("integer");
 
                     b.Property<int>("Type")
                         .HasColumnType("integer");

@@ -27,7 +27,8 @@ namespace ZenEstateAPI.Migrations
                     Price = table.Column<double>(type: "double precision", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: false),
                     ConstructionYear = table.Column<int>(type: "integer", nullable: false),
-                    ImageName = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false)
+                    ImageName = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
+                    PropertyContractId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
