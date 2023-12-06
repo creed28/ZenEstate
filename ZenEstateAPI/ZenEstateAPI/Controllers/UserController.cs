@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ZenEstateAPI.Models.DTOs;
+using ZenEstateAPI.Services;
 using ZenEstateAPI.Services.Interfaces;
 
 namespace ZenEstateAPI.Controllers
@@ -57,5 +58,20 @@ namespace ZenEstateAPI.Controllers
         {
             return Ok(_userService.GetAllUsers());
         }
+
+        [HttpGet("{id}")]
+        public ActionResult GetUsertById(int id)
+        {
+            var user = _userService.GetUser(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+
+
+            return Ok(user);
+        }
+
     }  
 }
