@@ -1,12 +1,18 @@
 import React, {useState, useEffect, createContext} from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 import {housesData} from '../../../API/data';
-import { MdHouseSiding } from 'react-icons/md';
 
 export const HouseContext = createContext();
 
 const HouseContextProvider = ({children}) => {
-  const [houses, setHouses] = useState(housesData);
+  const {data: propertiesData} = useQuery({
+    queryKey: ['properties'],
+    queryFn: () => {
+      return housesData;
+    }
+  })
+  
   const [city, setCity] = useState('Location (any)');
   const [cities, setCities] = useState([]);
   const [property, setProperty] = useState('Property type (any)');
@@ -16,10 +22,47 @@ const HouseContextProvider = ({children}) => {
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
   const [sortingOption, setSortingOption] = useState('');
-  const [sortedHouses, setSortedHouses] = useState([...housesData]);
+
+  const filteredHouses = propertiesData?.filter((house) => {
+    const isDefault = (str) => {
+      return str.split(' ').includes('(any)');
+    }
+
+    const newMinPrice = isNaN(parseInt(minPrice)) ? 0 : parseInt(minPrice);
+
+    const newMaxPrice = isNaN(parseInt(maxPrice)) ? 0 : parseInt(maxPrice);
+
+    const housePrice = parseInt(house.price);
+    const cityCondition = isDefault(city) || house.city === city;
+    const propertyCondition = isDefault(property) || house.type === property;
+    const priceCondition = isDefault(price) || (housePrice >= newMinPrice && housePrice <= newMaxPrice);
+  
+    return cityCondition && propertyCondition && priceCondition;
+  });
+
+  const filteredAndSortedHouses = filteredHouses?.sort((houseA, houseB) => {
+    const housePriceA = parseInt(houseA.price);
+    const housePriceB = parseInt(houseB.price);
+
+    const houseYearA = new Date(houseA.year);
+    const houseYearB = new Date(houseB.year);
+
+    switch (sortingOption.value) {
+      case 'price-asc':
+        return housePriceA - housePriceB;
+      case 'price-desc':
+        return housePriceB - housePriceA;
+      case 'date-asc':
+        return houseYearA - housePriceB;
+      case 'date-desc':
+        return houseYearB - housePriceA;
+      default:
+        return 0;
+    }
+  });
 
   useEffect(() => {
-    const allCities = houses.map((house) => {
+    const allCities = housesData.map((house) => {
       return house.city;
     });
 
@@ -29,7 +72,7 @@ const HouseContextProvider = ({children}) => {
   }, []);
 
   useEffect(() => {
-    const allProperties = houses.map((house) => {
+    const allProperties = housesData.map((house) => {
       return house.type;
     });
 
@@ -38,32 +81,6 @@ const HouseContextProvider = ({children}) => {
     setProperties(uniqueProperties);
   }, []);
 
-  const handleClick = () => {
-    setLoading(true);
-
-    const isDefault = (str) => {
-      return str.split(' ').includes('(any)');
-    }
-
-    const newMinPrice = isNaN(parseInt(minPrice)) ? 0 : parseInt(minPrice);
-
-    const newMaxPrice = isNaN(parseInt(maxPrice)) ? 0 : parseInt(maxPrice);
-
-    const newHouses = sortedHouses.filter((house) => {
-      const housePrice = parseInt(house.price);
-      const cityCondition = isDefault(city) || house.city === city;
-      const propertyCondition = isDefault(property) || house.type === property;
-      const priceCondition = isDefault(price) || (housePrice >= newMinPrice && housePrice <= newMaxPrice);
-    
-      return cityCondition && propertyCondition && priceCondition;
-    });    
-
-    setTimeout(() => {
-      return newHouses.length < 1 ? setHouses([]) : setHouses(newHouses),
-      setLoading(false);
-    }, 2000)
-  }
-
   const handleReset = () => {
     setCity('Location (any)');
     setProperty('Property type (any)');
@@ -71,39 +88,7 @@ const HouseContextProvider = ({children}) => {
     setMaxPrice('');
     setPrice('Price range (any)');
     setSortingOption('(Default)');
-    setHouses(housesData);
   }
-
-  const sortHouses = (option) => {
-    let newSortedHouses;
-  
-    switch (option.value) {
-      case 'price-asc':
-        newSortedHouses = [...housesData].sort((a, b) => parseInt(a.price) - parseInt(b.price));
-        break;
-      case 'price-desc':
-        newSortedHouses = [...housesData].sort((a, b) => parseInt(b.price) - parseInt(a.price));
-        break;
-      case 'date-asc':
-        newSortedHouses = [...housesData].sort((a, b) => new Date(a.year) - new Date(b.year));
-        break;
-      case 'date-desc':
-        newSortedHouses = [...housesData].sort((a, b) => new Date(b.year) - new Date(a.year));
-        break;
-      default:
-        newSortedHouses = [...housesData];
-        break;
-    }
-  
-    setSortedHouses(newSortedHouses);
-    setHouses(newSortedHouses);
-  };
-
-  useEffect(() => {
-    if (sortingOption) {
-      sortHouses(sortingOption);
-    }
-  }, [sortingOption]);
 
   return (
     <HouseContext.Provider value={{
@@ -117,9 +102,7 @@ const HouseContextProvider = ({children}) => {
       setProperties,
       price,
       setPrice,
-      houses,
       loading,
-      handleClick,
       minPrice,
       setMinPrice,
       maxPrice,
@@ -127,7 +110,7 @@ const HouseContextProvider = ({children}) => {
       sortingOption, 
       setSortingOption,
       handleReset,
-      sortHouses
+      filteredAndSortedHouses
     }}>
       {children}
     </HouseContext.Provider>
