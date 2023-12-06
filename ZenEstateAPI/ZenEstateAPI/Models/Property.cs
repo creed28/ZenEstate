@@ -29,5 +29,6 @@ namespace ZenEstateAPI.Models
         public string ImageName { get; set; }
         [NotMapped]
         public IFormFile ImageFile { get; set; }
+        public int PropertyContractId { get; set; }
     }
 }
