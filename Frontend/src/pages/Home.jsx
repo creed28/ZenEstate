@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useContext} from 'react';
 import Image from '../assets/img/main-image.jpg';
 import SectionImage from '../assets/img/section-image.avif';
 import Search from '../components/Search';
 import {Link} from 'react-router-dom';
 import {useAuth} from '../hooks/useAuth';
 import JoinUs from '../components/JoinUs';
+import { HouseContext } from '../contexts/HouseContext';
+import Property from '../components/Property';
 
 const Home = () => {
   const {auth} = useAuth();
+  const {houses} = useContext(HouseContext);
+
+  const selectedHouses = houses.filter((house) => [3, 6, 10].includes(house.id));
 
   return (
     <main>
@@ -57,6 +62,16 @@ const Home = () => {
             </div>
           </section>
           <div className='border border-1 border-primary-grey mt-[3rem]'></div>
+          <section className='flex flex-col items-center gap-y-[3rem]'>
+            <h3 className='text-xl lg:text-[28px] font-semibold'>Featured Properties</h3>
+            <section className='flex justify-center gap-x-[3rem]'>
+              {selectedHouses.map((house, index) => (
+                <Link to={`/property/${house.id}`} key={index}>
+                  <Property house={house} />
+                </Link>
+              ))}
+            </section>
+          </section>
           <JoinUs />
       </div>
      </main>
