@@ -1,4 +1,5 @@
-﻿using ZenEstateAPI.Data;
+﻿using Microsoft.AspNetCore.Mvc;
+using ZenEstateAPI.Data;
 using ZenEstateAPI.Models;
 using ZenEstateAPI.Models.DTOs;
 using ZenEstateAPI.Services.Interfaces;
@@ -51,6 +52,11 @@ namespace ZenEstateAPI.Services
         public List<User> GetAllUsers()
         {
             return _context.Users.ToList();
+        }
+
+        public User? GetUser(int id)
+        {
+            return _context.Users.ToList().Find(p => p.Id == id);
         }
     }
 }
