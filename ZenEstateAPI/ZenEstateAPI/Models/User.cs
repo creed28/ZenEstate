@@ -18,7 +18,6 @@ namespace ZenEstateAPI.Models
         public string Email { get; set; }
         [StringLength(10)]
         public string Phone { get; set; }
-        [StringLength(16)]
         public string Password { get; set; }
         public Role Role { get; set; }
         public ContractList ContractList { get; set; }
