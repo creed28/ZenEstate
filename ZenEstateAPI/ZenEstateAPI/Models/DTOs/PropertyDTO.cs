@@ -5,6 +5,7 @@ namespace ZenEstateAPI.Models.DTOs
 {
     public class PropertyDTO
     {
+        public int OwnerId { get; set; }
         public string Name { get; set; }
         public string City { get; set; }
         public string Address { get; set; }
