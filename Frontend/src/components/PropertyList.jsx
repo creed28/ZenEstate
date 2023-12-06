@@ -12,7 +12,7 @@ const PropertyList = ({ properties, loading }) => {
     );
   }
 
-  if (properties.length < 1) {
+  if (properties?.length < 1) {
     return (
       <div className='text-center text-3xl text-[#979797] pb-20 bg-[#fafafa]'>
         No properties with that criteria were found... :(
@@ -24,7 +24,7 @@ const PropertyList = ({ properties, loading }) => {
     <section>
       <div className='container mx-auto'>
         <div className='grid md:grid-cols-2 lg:grid-cols-3 pb-10 gap-4 lg:gap-x-14 lg:gap-y-9'>
-          {properties.map((house, index) => (
+          {properties?.map((house, index) => (
             <Link to={`/property/${house.id}`} key={index}>
               <Property house={house} />
             </Link>
