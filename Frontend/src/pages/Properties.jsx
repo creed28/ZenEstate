@@ -37,9 +37,9 @@ const Properties = () => {
 
   return (
     <section className="flex bg-[#fafafa]">
-      <div className={`bg-[#f7f7f7] w-1/4 px-4 py-6 flex flex-col gap-y-2 
-        ${loading ? '' : houses.length < 1 ? '' : 'fixed'} mt-10 ml-3 h-[450px] rounded-lg border`}>
-        <div className='flex items-center text-[2rem] font-semibold'>
+      <div className='bg-[#f7f7f7] w-1/4 px-4 py-6 flex flex-col gap-y-2 
+        mb-10 mt-10 ml-3 h-[500px] rounded-lg border'>
+        <div className='flex items-center text-[2rem] font-semibold pt-5'>
             <MdFilterAlt />
             <span className='text-[1.8rem]'>Filters</span>
         </div>
