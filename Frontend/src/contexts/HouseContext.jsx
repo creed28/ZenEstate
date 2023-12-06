@@ -1,17 +1,36 @@
 import React, {useState, useEffect, createContext} from 'react';
-import { useQuery } from '@tanstack/react-query';
-
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import axios from '../api/axios';
 import {housesData} from '../../../API/data';
 
 export const HouseContext = createContext();
 
 const HouseContextProvider = ({children}) => {
+  const queryClient = useQueryClient();
   const {data: propertiesData} = useQuery({
     queryKey: ['properties'],
-    queryFn: () => {
-      return housesData;
+    queryFn: async () => {
+      const res = await axios.get('Property/GetAllProperties'); 
+      return res.data;
     }
   })
+
+  const getRandomImage = () => {
+    const images = housesData.map((house) => {
+      return house.imageLg;
+    });
+  
+    if (images.length === 0) {
+      return null;
+    }
+  
+    const randomIndex = Math.floor(Math.random() * images.length);
+    return images[randomIndex];
+  };
+
+  const updateQuery = () =>{
+    queryClient.invalidateQueries(['properties'])
+  }
   
   const [city, setCity] = useState('Location (any)');
   const [cities, setCities] = useState([]);
@@ -90,6 +109,7 @@ const HouseContextProvider = ({children}) => {
     setSortingOption('(Default)');
   }
 
+
   return (
     <HouseContext.Provider value={{
       city,
@@ -110,7 +130,9 @@ const HouseContextProvider = ({children}) => {
       sortingOption, 
       setSortingOption,
       handleReset,
-      filteredAndSortedHouses
+      filteredAndSortedHouses,
+      updateQuery,
+      getRandomImage
     }}>
       {children}
     </HouseContext.Provider>
