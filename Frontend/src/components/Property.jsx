@@ -3,13 +3,13 @@ import {BiBed, BiBath, BiArea} from 'react-icons/bi';
 
 const Property = ({house}) => {
   const {
-    image, type, city, address, bedrooms, bathrooms, surface, price
+    imageName, type, city, address, bedrooms, bathrooms, surface, price
   } = house;
   
   return (
     <div className='bg-[white] drop-shadow-xl p-5 mb-10 rounded-lg hover:scale-105
        w-full max-w-[352px] max-h-[560px] mx-auto cursor-pointer hover:drop-shadow-2xl transition'>
-      <img className='mb-8' src={image} alt="" />
+      <img className='mb-8' src={imageName} alt="" />
       <div className='mb-4 flex gap-x-2 text-sm'>
         <div className='rounded-full bg-[#616161] text-[white] px-3'>     
           {type}
