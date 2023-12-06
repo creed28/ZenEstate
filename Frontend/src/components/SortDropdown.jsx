@@ -4,11 +4,10 @@ import { Menu } from '@headlessui/react';
 import { HouseContext } from '../contexts/HouseContext';
 
 const SortDropdown = () => {
-  const {sortingOption, setSortingOption, sortHouses} = useContext(HouseContext);
+  const {sortingOption, setSortingOption} = useContext(HouseContext);
 
   const handleSortingChange = (option) => {
     setSortingOption(option);
-    sortHouses(option);
   };
 
   const sortingOptions = [
