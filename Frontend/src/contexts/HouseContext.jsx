@@ -1,6 +1,7 @@
 import React, {useState, useEffect, createContext} from 'react';
 
 import {housesData} from '../../../API/data';
+import { MdHouseSiding } from 'react-icons/md';
 
 export const HouseContext = createContext();
 
@@ -15,6 +16,7 @@ const HouseContextProvider = ({children}) => {
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
   const [sortingOption, setSortingOption] = useState('');
+  const [sortedHouses, setSortedHouses] = useState([...housesData]);
 
   useEffect(() => {
     const allCities = houses.map((house) => {
@@ -47,7 +49,7 @@ const HouseContextProvider = ({children}) => {
 
     const newMaxPrice = isNaN(parseInt(maxPrice)) ? 0 : parseInt(maxPrice);
 
-    const newHouses = housesData.filter((house) => {
+    const newHouses = sortedHouses.filter((house) => {
       const housePrice = parseInt(house.price);
       const cityCondition = isDefault(city) || house.city === city;
       const propertyCondition = isDefault(property) || house.type === property;
@@ -68,8 +70,40 @@ const HouseContextProvider = ({children}) => {
     setMinPrice('');
     setMaxPrice('');
     setPrice('Price range (any)');
+    setSortingOption('(Default)');
     setHouses(housesData);
   }
+
+  const sortHouses = (option) => {
+    let newSortedHouses;
+  
+    switch (option.value) {
+      case 'price-asc':
+        newSortedHouses = [...housesData].sort((a, b) => parseInt(a.price) - parseInt(b.price));
+        break;
+      case 'price-desc':
+        newSortedHouses = [...housesData].sort((a, b) => parseInt(b.price) - parseInt(a.price));
+        break;
+      case 'date-asc':
+        newSortedHouses = [...housesData].sort((a, b) => new Date(a.year) - new Date(b.year));
+        break;
+      case 'date-desc':
+        newSortedHouses = [...housesData].sort((a, b) => new Date(b.year) - new Date(a.year));
+        break;
+      default:
+        newSortedHouses = [...housesData];
+        break;
+    }
+  
+    setSortedHouses(newSortedHouses);
+    setHouses(newSortedHouses);
+  };
+
+  useEffect(() => {
+    if (sortingOption) {
+      sortHouses(sortingOption);
+    }
+  }, [sortingOption]);
 
   return (
     <HouseContext.Provider value={{
@@ -92,7 +126,8 @@ const HouseContextProvider = ({children}) => {
       setMaxPrice,
       sortingOption, 
       setSortingOption,
-      handleReset
+      handleReset,
+      sortHouses
     }}>
       {children}
     </HouseContext.Provider>
