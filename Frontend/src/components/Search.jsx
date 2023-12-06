@@ -3,15 +3,12 @@ import CityDropdown from './CityDropdown';
 import PriceRangeDropdown from './PriceRangeDropdown';
 import PropertyDropdown from './PropertyDropdown';
 import {RiSearch2Line} from 'react-icons/ri';
-import { HouseContext } from '../contexts/HouseContext';
 import { useNavigate } from "react-router-dom";
 
 const Search = () => {
-  const {handleClick} = useContext(HouseContext);
   const navigate = useNavigate();
 
   const onClick = () => {
-    handleClick();
     navigate('/properties');
   }
 
