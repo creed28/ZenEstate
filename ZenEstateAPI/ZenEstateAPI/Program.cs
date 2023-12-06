@@ -45,6 +45,8 @@ namespace ZenEstateAPI
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<IPropertyService, PropertyService>();
             builder.Services.AddScoped<IContractService, ContractService>();
+            builder.Services.AddScoped<IContractListService, ContractListService>();
+
 
             builder.Services.AddAuthentication(options =>
             {
